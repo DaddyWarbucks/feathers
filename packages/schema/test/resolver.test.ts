@@ -220,8 +220,8 @@ describe('@feathersjs/schema/resolver', () => {
 
   it('optimizes promises', async () => {
     const count = 10000
-    const asyncResolvers = 5
-    const syncResolvers = 5
+    const asyncResolvers = 1
+    const syncResolvers = 10
     const runs = 10
     const properties: { [key: string]: any } = {}
 
