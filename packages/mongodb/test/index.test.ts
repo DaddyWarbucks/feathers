@@ -29,6 +29,7 @@ const testSuite = adapterTests([
   '.remove + multi',
   '.remove + multi no pagination',
   '.remove + id + query id',
+  '.remove + NotFound',
   '.update',
   '.update + $select',
   '.update + id + query',
