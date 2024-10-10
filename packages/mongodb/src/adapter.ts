@@ -213,6 +213,7 @@ export class MongoDbAdapter<
     if (params.pipeline) {
       const aggregateParams = {
         ...params,
+        paginate: false,
         query: {
           ...params.query,
           $select: [this.id],
