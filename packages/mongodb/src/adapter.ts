@@ -214,6 +214,7 @@ export class MongoDbAdapter<
       const aggregateParams = {
         ...params,
         paginate: false,
+        pipeline: [...params.pipeline, { $count: 'total' }],
         query: {
           ...params.query,
           $select: [this.id],
@@ -222,8 +223,8 @@ export class MongoDbAdapter<
           $limit: undefined
         }
       }
-      const result = await this.aggregateRaw(aggregateParams).then((result) => result.toArray())
-      return result.length
+      const [result] = await this.aggregateRaw(aggregateParams).then((result) => result.toArray())
+      return result.total
     }
 
     const model = await this.getModel(params)
