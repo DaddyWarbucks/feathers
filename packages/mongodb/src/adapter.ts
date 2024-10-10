@@ -225,6 +225,9 @@ export class MongoDbAdapter<
         }
       }
       const [result] = await this.aggregateRaw(aggregateParams).then((result) => result.toArray())
+      if (!result) {
+        return 0
+      }
       return result.total
     }
 
