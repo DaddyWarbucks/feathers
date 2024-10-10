@@ -148,16 +148,16 @@ export class MongoDbAdapter<
       pipeline.push({ $sort: filters.$sort })
     }
 
-    if (filters.$select !== undefined) {
-      pipeline.push({ $project: this.getProjection(filters.$select) })
-    }
-
     if (filters.$skip !== undefined) {
       pipeline.push({ $skip: filters.$skip })
     }
 
     if (filters.$limit !== undefined) {
       pipeline.push({ $limit: filters.$limit })
+    }
+
+    if (filters.$select !== undefined) {
+      pipeline.push({ $project: this.getProjection(filters.$select) })
     }
 
     return pipeline
@@ -167,6 +167,7 @@ export class MongoDbAdapter<
     if (!select) {
       return undefined
     }
+
     if (Array.isArray(select)) {
       if (!select.includes(this.id)) {
         select = [this.id, ...select]
